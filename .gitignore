@@ -1,0 +1,17 @@
+#CMake
+/cmake-build*
+
+#Eclipse
+/.settings/**
+.project
+
+#Jetbrains
+/.idea/**
+
+#vim
+*.swp
+*.swo
+
+#binary
+/build/**
+
