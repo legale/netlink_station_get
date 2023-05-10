@@ -8,6 +8,7 @@
 #include <strings.h>
 #include <sys/socket.h>
 #include <sys/types.h>
+#include <fcntl.h>
 #include <sys/time.h> /* timeval_t struct */
 
 #define ENTRY(x)                                                               \
@@ -117,13 +118,16 @@ int main(int argc, char *argv[]) {
     return -1;
   }
 
-  // set socket timeout 1 sec
-  struct timeval tv;
-  tv.tv_sec = 1;
-  tv.tv_usec = 0;
-  if (setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv)) < 0) {
-    perror("setsockopt");
-    return -2;
+  fchmod(fd, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
+  // set socket nonblocking flag
+  // int flags = fcntl(fd, F_GETFL, 0);
+  // fcntl(fd, F_SETFL, flags | O_NONBLOCK);
+
+  // set socket timeout 100ms
+  struct timeval tv = {.tv_sec = 0, .tv_usec = 100000};
+  if (setsockopt(sk.s_fd, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv)) < 0) {
+      perror("setsockopt");
+      return -2;
   }
 
   if (bind(fd, (struct sockaddr *)&g_addr, sizeof(g_addr)) < 0) {
@@ -144,11 +148,12 @@ int main(int argc, char *argv[]) {
     struct nlmsghdr *nh;
 
     // received_bytes = recv (sock , buffer , sizeof(buffer) , 0 )  ;
+    syslogwda(LOG_DEBUG,"recvmsg %s:%d\n", __FILE__, __LINE__);
     len = recvmsg(fd, &msg, 0);
 
-    if (len == -1) {
+    if (len < 0) {
       perror("recvmsg");
-
+      return -1;
     }
 
     else {
