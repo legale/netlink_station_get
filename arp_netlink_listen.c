@@ -9,6 +9,7 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <fcntl.h>
+#include <sys/stat.h> /* fchmod */
 #include <sys/time.h> /* timeval_t struct */
 
 #define ENTRY(x)                                                               \
