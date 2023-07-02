@@ -149,7 +149,6 @@ int main(int argc, char *argv[]) {
     struct nlmsghdr *nh;
 
     // received_bytes = recv (sock , buffer , sizeof(buffer) , 0 )  ;
-    syslogwda(LOG_DEBUG,"recvmsg %s:%d\n", __FILE__, __LINE__);
     len = recvmsg(fd, &msg, 0);
 
     if (len < 0) {
