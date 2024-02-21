@@ -10,8 +10,8 @@ LDDIRS += -L$(BD)
 #Compiler flags
 CFLAGS += -Wall -O2
 CFLAGS += -I./
-CFLAGS += -I/usr/include/libnl3
-LDFLAGS += -lnl-3 -lnl-genl-3
+CFLAGS += -I/usr/local/include/libnl-tiny
+LDFLAGS += -lnl-tiny
 
 #Compiler
 CC = gcc

@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <strings.h>
+#define __USE_GNU
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <fcntl.h>

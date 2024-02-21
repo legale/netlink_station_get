@@ -2,8 +2,8 @@
 // Created by ru on 08/25/22.
 //
 
-#ifndef NETLONK_DEMO_NL80211_ATTRS_MAP_H
-#define NETLONK_DEMO_NL80211_ATTRS_MAP_H
+#ifndef NETLINK_DEMO_NL80211_ATTRS_MAP_H
+#define NETLINK_DEMO_NL80211_ATTRS_MAP_H
 #define ENTRY(x) {x, #x}
 
 struct nl80211_attrs_map {
@@ -560,4 +560,4 @@ struct nl80211_attrs_map nl_attr_map [] =
                 ENTRY(NL80211_ATTR_EHT_CAPABILITY)
 
         };
-#endif //NETLONK_DEMO_NL80211_ATTRS_MAP_H
+#endif //NETLINK_DEMO_NL80211_ATTRS_MAP_H
